@@ -50,8 +50,8 @@ class DQNetwork:
             # self.b5 = tf.Variable(tf.constant(0.1, shape=[3]), name="b5")
             # self.z5 = tf.matmul(self.z4, self.W5) + self.b5
 
-            # self.output = self.l5
-            self.output = tf.nn.softmax(self.l5)
+            self.output = self.l5
+            # self.output = tf.nn.softmax(self.l5)
             # self.outputArgMax = np.argmax(self.output)
 
             # Q is our predicted Q value.

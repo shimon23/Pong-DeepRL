@@ -138,14 +138,6 @@ def predict_action(sess, DQNetwork2, explore_start, explore_stop, decay_rate, de
     if (explore_probability > exp_exp_tradeoff):
         # Make a random action (exploration)
         action = random.randint(1, len(actions)) - 1
-        if(action==0): # 0 = stay
-            action = 0
-        elif(action==1): # 1 = up
-            action = 2
-        elif(action==2): # 2 = down
-            action = 3
-        # print("herreee")
-
     else:
         # Get action from Q-network (exploitation)
         # Estimate the Qs values state
@@ -153,6 +145,7 @@ def predict_action(sess, DQNetwork2, explore_start, explore_stop, decay_rate, de
         Qs = sess.run(DQNetwork2.output, feed_dict={DQNetwork2.inputs_: state.reshape((1, *state.shape))})
         # Take the biggest Q value (= the best action)
         action = np.argmax(Qs)
+        print(action)
 
     return action, explore_probability
 

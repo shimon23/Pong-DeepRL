@@ -18,7 +18,7 @@ import preFunctions as pre
 import Memory as Mem
 
 # Create our environment:
-env = gym.make('Pong-ram-v0')
+env = gym.make('Pong-v0')
 # Create log file:
 text_file = open("./saveData/log.txt", "a")
 
@@ -30,20 +30,20 @@ possible_actions = [[1,0,0,0,0,0],[0,1,0,0,0,0],[0,0,1,0,0,0],[0,0,0,1,0,0],[0,0
 
 
 ### MODEL HYPERPARAMETERS
-state_size = 128  # Our vector size.
+state_size = 7  # Our vector size.
 action_size = len(possible_actions)  # actions
-learning_rate = 0.00000000000000000000001  # Alpha(learning rate)
+learning_rate = 0.000000001  # Alpha(learning rate)
 # test: 0.00000000000000000000001
 
 ### TRAINING HYPERPARAMETERS
 total_episodes = 50000000  # Total episodes for training
 max_steps = 50000  # Max possible steps in an episode
-batch_size = 32  # Batch size
+batch_size = 64  # Batch size
 
 # Exploration parameters for epsilon greedy strategy
 explore_start = 1.0  # exploration probability at start
-explore_stop = 0.1  # minimum exploration probability
-decay_rate = 0.0000001  # exponential decay rate for exploration prob
+explore_stop = 0.5  # minimum exploration probability
+decay_rate = 0.000001  # exponential decay rate for exploration prob
 
 # Q learning hyperparameters
 gamma = 0.99  # Discounting rate
@@ -53,12 +53,12 @@ pretrain_length = batch_size  # Number of experiences stored in the Memory when 
 memory_size = 100000  # Number of experiences the Memory can keep
 
 ### MODIFY THIS TO FALSE IF YOU JUST WANT TO SEE THE TRAINED AGENT
-# training = True
-training = False
+training = True
+# training = False
 
 ### MODIFY THIS TO FALSE IF IS NOT THE FIRST TARINING EPISODE.
-# firstTrain = True
-firstTrain = False
+firstTrain = True
+# firstTrain = False
 
 ## TURN THIS TO TRUE IF YOU WANT TO RENDER THE ENVIRONMENT
 episode_render = True
@@ -82,20 +82,25 @@ if(firstTrain):
         # If it's the first step
         if i == 0:
             state = env.reset()
+            state = pre.stateToVector(state)
 
         # Get the next_state, the rewards, done by taking a random action
         action = random.randint(1, len(possible_actions)) - 1
         # action = pre.actionAdapter(choice)
         next_state, reward, done, _ = env.step(action)
+        next_state = pre.stateToVector(next_state)
 
         # If the episode is finished (until we get 21)
         if done:
             # We finished the episode
             next_state = np.zeros(state.shape)
+
             # Add experience to memory
             memory.add((state, possible_actions[action], reward, next_state, done))
             # Start a new episode
             state = env.reset()
+            state = pre.stateToVector(state)
+
 
         else:
             # append to log file:
@@ -162,6 +167,8 @@ if training == True:
 
             # Make a new episode and observe the first state
             state = env.reset()
+            state = pre.stateToVector(state)
+
 
 
             while step < max_steps:
@@ -176,6 +183,7 @@ if training == True:
                 # Perform the action and get the next_state, reward, and done information
                 # action = pre.actionAdapter(action)
                 next_state, reward, done, _ = env.step(action)
+                next_state = pre.stateToVector(next_state)
 
                 # Game display:
                 if episode_render:
@@ -231,11 +239,16 @@ if training == True:
 
                 # Get Q values for next_state
                 Qs_next_state = sess.run(DQNetwork2.output, feed_dict={DQNetwork2.inputs_: next_states_mb})
-                stateTest = state.reshape(1,128)
-                # Qs2 = sess.run(DQNetwork2.output, feed_dict={DQNetwork2.inputs_: stateTest})
-                # print(Qs2[0])
-                # print(np.argmax(Qs2[0]))
-                # print(sess.run(Q))
+
+                # state2 = np.reshape(state,(1,7))
+
+
+                # Qs_next = sess.run(DQNetwork2.output, feed_dict={DQNetwork2.inputs_: state2})
+
+                # print(np.argmax(Qs_next))
+                # print(Qs_next)
+                # break
+
                 # Set Q_target = r if the episode ends at s+1, otherwise set Q_target = r + gamma*maxQ(s', a')
                 for i in range(0, len(batch)):
                     terminal = dones_mb[i]
@@ -289,6 +302,7 @@ with tf.Session() as sess:
         total_rewards = 0
 
         state = env.reset()
+        state = pre.stateToVector(state)
 
         print("****************************************************")
         print("EPISODE ", episode)
@@ -304,15 +318,15 @@ with tf.Session() as sess:
 
             # Take the biggest Q value (= the best action)
             action = np.argmax(Qs[0])
-            # action = pre.actionAdapter(action)
-            # print(state)
-            print(Qs[0])
+            # time.sleep(0.1)
+            print(Qs)
             print(action)
-            time.sleep(0.1)
 
 
             # Perform the action and get the next_state, reward, and done information
             next_state, reward, done, _ = env.step(action)
+            next_state = pre.stateToVector(next_state)
+
             env.render()
 
             total_rewards += reward
