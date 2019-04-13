@@ -1,23 +1,20 @@
-from skimage import transform  # Help us to preprocess the frames
-from skimage.color import rgb2gray  # Help us to gray our frames
-
 from collections import deque  # Ordered collection with ends
-
+import tensorflow as tf
 import numpy as np
 import random
 
 
-# Init for global variables:
-oldX = 0
-oldY = 0
+# # Init for global variables:
+# oldX = 0
+# oldY = 0
 
 
 # State to vector function:
 # Argument: state - matrix of pixels.
 # Reuturn: vector of [P1,P2,xBall,yBall,mX,mY,speed]
 def stateToVector(state):
-    # [P1,P2,xBall,yBall,mX,mY,speed]
-    vector = [0, 0, 0, 0, 0, 0,0]
+    # [P1,P2,xBall,yBall]
+    vector = [0, 0, 0, 0]
 
     # player1(left) position:
     for i in range(34, 194):
@@ -51,39 +48,39 @@ def stateToVector(state):
                 vector[3] = j
                 break
 
-    global oldX
-    global oldY
-
-
-
-    # Set defulat values for some states:
-    # If the state does not contain ball, define speed and m's to 0.
-    if((vector[2]==0 and vector[3]==0) or (oldX==0 and oldY==0)):
-        vector[4] = 0
-        vector[5] = 0
-
-        oldX = vector[2]
-        oldY = vector[3]
-
-        vector[6] = 0
-
-
-    else:
-        x1MinusX2 = vector[2] - oldX
-        y1MinusY2 = vector[3] - oldY
-
-        dist = np.sqrt(np.power(x1MinusX2, 2) + np.power(y1MinusY2, 2))
-        vector[6] = dist / 2
-
-        dirX = vector[2] - oldX
-        dirY = vector[3] - oldY
-
-        oldX = vector[2]
-        oldY = vector[3]
-
-        vector[4] = dirX
-        vector[5] = dirY
-
+    # global oldX
+    # global oldY
+    #
+    #
+    #
+    # # Set defulat values for some states:
+    # # If the state does not contain ball, define speed and m's to 0.
+    # if((vector[2]==0 and vector[3]==0) or (oldX==0 and oldY==0)):
+    #     vector[4] = 0
+    #     vector[5] = 0
+    #
+    #     oldX = vector[2]
+    #     oldY = vector[3]
+    #
+    #     vector[6] = 0
+    #
+    #
+    # else:
+    #     x1MinusX2 = vector[2] - oldX
+    #     y1MinusY2 = vector[3] - oldY
+    #
+    #     dist = np.sqrt(np.power(x1MinusX2, 2) + np.power(y1MinusY2, 2))
+    #     vector[6] = dist / 2
+    #
+    #     dirX = vector[2] - oldX
+    #     dirY = vector[3] - oldY
+    #
+    #     oldX = vector[2]
+    #     oldY = vector[3]
+    #
+    #     vector[4] = dirX
+    #     vector[5] = dirY
+    #
 
 
     return vector
@@ -160,3 +157,99 @@ def actionAdapter(action):
         return 5
     else:
         return action
+
+
+
+# stack_states function:
+# Arguments: 1. stacked_vectors - (deque) deque with 4 vectors.
+#            2. state - (matrix) vector of current state.
+#            3. is_new_episode - (boolean) check if we start an new episode.
+#            4. stack_size - (int).
+# Return: 1. stacked_state - (numpy stack).
+#         2. stacked_vectors - (deque)
+def stack_states(stacked_vectors, state, is_new_episode,stack_size,state_size):
+    # Preprocess frame
+    stateVec = stateToVector(state)
+
+    if is_new_episode:
+        # Clear our stacked_frames
+        stacked_Vectors = deque([np.zeros((state_size), dtype=np.int) for i in range(stack_size)], maxlen=4)
+
+        # Because we're in a new episode, copy the same state 4x
+        stacked_Vectors.append(stateVec)
+        stacked_Vectors.append(stateVec)
+        stacked_Vectors.append(stateVec)
+        stacked_Vectors.append(stateVec)
+
+        # Stack the frames
+        stacked_state = np.stack(stacked_Vectors)
+
+    else:
+        # Append frame to deque, automatically removes the oldest frame
+        stacked_vectors.append(stateVec)
+
+        # print("test1")
+        # Build the stacked state (first dimension specifies different frames)
+        stacked_state = np.stack(stacked_vectors)
+        # print("test2")
+
+    return stacked_state, stacked_vectors
+
+
+def testGame(saver,env,DQNetwork2,stack_size,state_size):
+    # Testing mode:
+    with tf.Session() as sess:
+        total_test_rewards = []
+        # Load the model
+        saver.restore(sess, "./models/model.ckpt")
+
+        for episode in range(1):
+            total_rewards = 0
+
+            state = env.reset()
+            state, stacked_vectors = stack_states(stacked_vectors, state, True, stack_size, state_size)
+
+            # state = pre.stateToVector(state)
+
+            print("****************************************************")
+            print("EPISODE ", episode)
+
+            while True:
+                # Convert to Numpy array and reshape the state
+                # state = np.array(state)
+                # state = state.reshape((1, state_size))
+                # print(state.shape)
+
+                stateArr = []
+                stateArr.append(state)
+
+                # Get action from Q-network
+                # Estimate the Qs values state
+                Qs = sess.run(DQNetwork2.output, feed_dict={DQNetwork2.inputs_: stateArr})
+
+                # Take the biggest Q value (= the best action)
+                action = np.argmax(Qs[0])
+                # time.sleep(0.1)
+                print(Qs)
+                print(action)
+
+                # Perform the action and get the next_state, reward, and done information
+                next_state, reward, done, _ = env.step(action)
+                # next_state = pre.stateToVector(next_state)
+
+                env.render()
+
+                total_rewards += reward
+
+                if done:
+                    print("Score", total_rewards)
+                    total_test_rewards.append(total_rewards)
+                    break
+
+                next_state, stacked_vectors = stack_states(stacked_vectors, next_state, False, stack_size,
+                                                               state_size)
+                state = next_state
+
+        # env.close()
+
+

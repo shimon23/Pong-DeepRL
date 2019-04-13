@@ -6,34 +6,43 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import random
 import time
+import glob
+
 
 import gym # Game environment.
 import tensorflow as tf  # Deep Learning library.
 import numpy as np  # Handle matrices.
 import pickle # Save and restore data package.
+from collections import deque # For stacking states.
 
 # Import my functions and classes:
 import DQNetwork as DNQ
 import preFunctions as pre
 import Memory as Mem
 
+
+
 # Create our environment:
 env = gym.make('Pong-v0')
+
 # Create log file:
 text_file = open("./saveData/log.txt", "a")
 
 # # possible_actions = # [[stay],[stay],[up],[down],[up],[down]]
 possible_actions = [[1,0,0,0,0,0],[0,1,0,0,0,0],[0,0,1,0,0,0],[0,0,0,1,0,0],[0,0,0,0,1,0],[0,0,0,0,0,1]]
-# # possible_actions = # [[stay],[up],[down]]
-# possible_actions = [[1,0,0,0,0,0],[0,0,1,0,0,0],[0,0,0,1,0,0]]
-
 
 
 ### MODEL HYPERPARAMETERS
-state_size = 7  # Our vector size.
+state_size = 4 # Our vector size.
+original_state_size = (210, 160, 3)
 action_size = len(possible_actions)  # actions
-learning_rate = 0.000000001  # Alpha(learning rate)
-# test: 0.00000000000000000000001
+learning_rate = 0.00001  # Alpha(learning rate)
+stack_size = 4 # stack with 4 states.
+stack_states_size = [stack_size,state_size]
+
+
+# Initialize deque with zero-vectors states.
+stacked_vectors  =  deque([np.zeros((state_size), dtype=np.float) for i in range(stack_size)], maxlen=4)
 
 ### TRAINING HYPERPARAMETERS
 total_episodes = 50000000  # Total episodes for training
@@ -42,15 +51,15 @@ batch_size = 64  # Batch size
 
 # Exploration parameters for epsilon greedy strategy
 explore_start = 1.0  # exploration probability at start
-explore_stop = 0.5  # minimum exploration probability
-decay_rate = 0.000001  # exponential decay rate for exploration prob
+explore_stop = 0.1  # minimum exploration probability
+decay_rate = 0.0000001  # exponential decay rate for exploration prob
 
 # Q learning hyperparameters
 gamma = 0.99  # Discounting rate
 
 ### MEMORY HYPERPARAMETERS
 pretrain_length = batch_size  # Number of experiences stored in the Memory when initialized for the first time
-memory_size = 100000  # Number of experiences the Memory can keep
+memory_size = 1000000  # Number of experiences the Memory can keep
 
 ### MODIFY THIS TO FALSE IF YOU JUST WANT TO SEE THE TRAINED AGENT
 training = True
@@ -67,7 +76,7 @@ episode_render = True
 rewards_list = [] # list of all training rewards.
 
 # Instantiate the DQNetwork
-DQNetwork2 = DNQ.DQNetwork(state_size, action_size, learning_rate)
+DQNetwork2 = DNQ.DQNetwork(stack_states_size, action_size, learning_rate)
 
 # Instantiate memory
 memory = Mem.Memory(max_size=memory_size)
@@ -82,13 +91,13 @@ if(firstTrain):
         # If it's the first step
         if i == 0:
             state = env.reset()
-            state = pre.stateToVector(state)
+            state, stacked_vectors = pre.stack_states(stacked_vectors, state, True,stack_size,state_size)
 
         # Get the next_state, the rewards, done by taking a random action
         action = random.randint(1, len(possible_actions)) - 1
         # action = pre.actionAdapter(choice)
         next_state, reward, done, _ = env.step(action)
-        next_state = pre.stateToVector(next_state)
+        next_state, stacked_vectors = pre.stack_states(stacked_vectors, next_state, False,stack_size,state_size)
 
         # If the episode is finished (until we get 21)
         if done:
@@ -99,7 +108,7 @@ if(firstTrain):
             memory.add((state, possible_actions[action], reward, next_state, done))
             # Start a new episode
             state = env.reset()
-            state = pre.stateToVector(state)
+            state, stacked_vectors = pre.stack_states(stacked_vectors, state, True,stack_size,state_size)
 
 
         else:
@@ -110,6 +119,8 @@ if(firstTrain):
             memory.add((state, possible_actions[action], reward, next_state, done))
             # Our new state is now the next_state
             state = next_state
+    env.close()
+
 
 # If we continue with the training:
 else:
@@ -142,6 +153,7 @@ saver = tf.train.Saver()
 
 # Training mode:
 if training == True:
+    env = gym.wrappers.Monitor(env, "./vid", video_callable=lambda episode_id: True, force=True)
 
     with tf.Session() as sess:
 
@@ -165,11 +177,11 @@ if training == True:
             # Initialize the rewards of the episode
             episode_rewards = []
 
+            # Record episodes:
+
             # Make a new episode and observe the first state
             state = env.reset()
-            state = pre.stateToVector(state)
-
-
+            state, stacked_vectors = pre.stack_states(stacked_vectors, state, True,stack_size,state_size)
 
             while step < max_steps:
                 # Increase decay_step
@@ -181,9 +193,7 @@ if training == True:
                                                                  sess.run(decay_step), state,
                                                                  possible_actions)
                 # Perform the action and get the next_state, reward, and done information
-                # action = pre.actionAdapter(action)
                 next_state, reward, done, _ = env.step(action)
-                next_state = pre.stateToVector(next_state)
 
                 # Game display:
                 if episode_render:
@@ -195,7 +205,9 @@ if training == True:
                 # If the game is finished
                 if done:
                     # The episode ends so no next state
-                    next_state = np.zeros(state_size, dtype=np.int)
+                    next_state = np.zeros(original_state_size, dtype=np.int)
+                    next_state, stacked_vectors = pre.stack_states(stacked_vectors, next_state, False,stack_size,state_size)
+
                     # Set step = max_steps to end the episode
                     step = max_steps
                     # Get the total reward of the episode
@@ -218,6 +230,8 @@ if training == True:
                     memory.add((state, possible_actions[action], reward, next_state, done))
 
                 else:
+                    next_state, stacked_vectors = pre.stack_states(stacked_vectors, next_state, False,stack_size,state_size)
+
                     # Add experience to memory
                     memory.add((state, possible_actions[action], reward, next_state, done))
 
@@ -228,26 +242,15 @@ if training == True:
                 #Obtain random mini-batch from memory
                 batch = memory.sample(batch_size)
                 # print(batch)
-                states_mb = np.array([each[0] for each in batch])
+                states_mb = np.array([each[0] for each in batch],ndmin=2)
                 actions_mb = np.array([each[1] for each in batch])
                 rewards_mb = np.array([each[2] for each in batch])
-                next_states_mb = np.array([each[3] for each in batch])
+                next_states_mb = np.array([each[3] for each in batch],ndmin=2)
                 dones_mb = np.array([each[4] for each in batch])
-
                 target_Qs_batch = []
-
 
                 # Get Q values for next_state
                 Qs_next_state = sess.run(DQNetwork2.output, feed_dict={DQNetwork2.inputs_: next_states_mb})
-
-                # state2 = np.reshape(state,(1,7))
-
-
-                # Qs_next = sess.run(DQNetwork2.output, feed_dict={DQNetwork2.inputs_: state2})
-
-                # print(np.argmax(Qs_next))
-                # print(Qs_next)
-                # break
 
                 # Set Q_target = r if the episode ends at s+1, otherwise set Q_target = r + gamma*maxQ(s', a')
                 for i in range(0, len(batch)):
@@ -267,7 +270,6 @@ if training == True:
                                    feed_dict={DQNetwork2.inputs_: states_mb,
                                               DQNetwork2.target_Q: targets_mb,
                                               DQNetwork2.actions_: actions_mb})
-                # print(targets_mb)
 
             # Update episode number:
             sess.run(update)
@@ -292,6 +294,51 @@ if training == True:
                     pickle.dump(memory.getAllMemory(), fp)
 
 
+            # Test every 10 episodes:
+            if episode % 10 == 0:
+                total_test_rewards = []
+
+                total_rewards = 0
+
+                state = env.reset()
+                state, stacked_vectors = pre.stack_states(stacked_vectors, state, True, stack_size, state_size)
+
+
+                print("****************************************************")
+                print("TEST EPISODE: ",sess.run(episodeCounter))
+
+                while True:
+                    stateArr = []
+                    stateArr.append(state)
+
+                    # Get action from Q-network
+                    # Estimate the Qs values state
+                    Qs = sess.run(DQNetwork2.output, feed_dict={DQNetwork2.inputs_: stateArr})
+
+                    # Take the biggest Q value (= the best action)
+                    action = np.argmax(Qs[0])
+
+                    # Perform the action and get the next_state, reward, and done information
+                    next_state, reward, done, _ = env.step(action)
+                    env.render()
+
+                    total_rewards += reward
+
+                    if done:
+                        print("Score", total_rewards)
+                        total_test_rewards.append(total_rewards)
+                        break
+
+                    next_state, stacked_vectors = pre.stack_states(stacked_vectors, next_state, False, stack_size,
+                                                                   state_size)
+                    state = next_state
+
+                # Update episode number:
+                sess.run(update)
+
+
+
+
 # Testing mode:
 with tf.Session() as sess:
     total_test_rewards = []
@@ -302,19 +349,25 @@ with tf.Session() as sess:
         total_rewards = 0
 
         state = env.reset()
-        state = pre.stateToVector(state)
+        state, stacked_vectors = pre.stack_states(stacked_vectors, state, True,stack_size,state_size)
+
+        # state = pre.stateToVector(state)
 
         print("****************************************************")
         print("EPISODE ", episode)
 
         while True:
             # Convert to Numpy array and reshape the state
-            state = np.array(state)
-            state = state.reshape((1, state_size))
+            # state = np.array(state)
+            # state = state.reshape((1, state_size))
+            # print(state.shape)
+
+            stateArr = []
+            stateArr.append(state)
 
             # Get action from Q-network
             # Estimate the Qs values state
-            Qs = sess.run(DQNetwork2.output, feed_dict={DQNetwork2.inputs_: state})
+            Qs = sess.run(DQNetwork2.output, feed_dict={DQNetwork2.inputs_: stateArr})
 
             # Take the biggest Q value (= the best action)
             action = np.argmax(Qs[0])
@@ -325,7 +378,7 @@ with tf.Session() as sess:
 
             # Perform the action and get the next_state, reward, and done information
             next_state, reward, done, _ = env.step(action)
-            next_state = pre.stateToVector(next_state)
+            # next_state = pre.stateToVector(next_state)
 
             env.render()
 
@@ -336,6 +389,7 @@ with tf.Session() as sess:
                 total_test_rewards.append(total_rewards)
                 break
 
+            next_state, stacked_vectors = pre.stack_states(stacked_vectors, next_state, False,stack_size,state_size)
             state = next_state
 
     env.close()
