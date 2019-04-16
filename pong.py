@@ -36,7 +36,7 @@ possible_actions = [[1,0,0,0,0,0],[0,1,0,0,0,0],[0,0,1,0,0,0],[0,0,0,1,0,0],[0,0
 state_size = 4 # Our vector size.
 original_state_size = (210, 160, 3)
 action_size = len(possible_actions)  # actions
-learning_rate = 0.00001  # Alpha(learning rate)
+learning_rate = 0.000001  # Alpha(learning rate)
 stack_size = 4 # stack with 4 states.
 stack_states_size = [stack_size,state_size]
 
@@ -52,7 +52,7 @@ batch_size = 64  # Batch size
 # Exploration parameters for epsilon greedy strategy
 explore_start = 1.0  # exploration probability at start
 explore_stop = 0.1  # minimum exploration probability
-decay_rate = 0.0000001  # exponential decay rate for exploration prob
+decay_rate = 0.00000001  # exponential decay rate for exploration prob
 
 # Q learning hyperparameters
 gamma = 0.99  # Discounting rate
@@ -66,8 +66,8 @@ training = True
 # training = False
 
 ### MODIFY THIS TO FALSE IF IS NOT THE FIRST TARINING EPISODE.
-firstTrain = True
-# firstTrain = False
+# firstTrain = True
+firstTrain = False
 
 ## TURN THIS TO TRUE IF YOU WANT TO RENDER THE ENVIRONMENT
 episode_render = True
@@ -125,7 +125,7 @@ if(firstTrain):
 # If we continue with the training:
 else:
     # restore memory data:
-    with open("memory.dq", "rb") as fp:
+    with open("./saveData/memory.dq", "rb") as fp:
         temp = pickle.load(fp)
 
     # Add to memory buffer:
@@ -285,17 +285,17 @@ if training == True:
 
 
             # Save model every 5 episodes
-            if episode % 5 == 0:
+            if episode % 10 == 0:
                 save_path = saver.save(sess, "./models/model.ckpt")
                 print("Model Saved")
 
                 # Save memory data:
-                with open("memory.dq", "wb") as fp:  # Pickling
+                with open("./saveData/memory.dq", "wb") as fp:  # Pickling
                     pickle.dump(memory.getAllMemory(), fp)
 
 
             # Test every 10 episodes:
-            if episode % 10 == 0:
+            if episode % 50 == 0:
                 total_test_rewards = []
 
                 total_rewards = 0
@@ -341,6 +341,10 @@ if training == True:
 
 # Testing mode:
 with tf.Session() as sess:
+
+    env = gym.wrappers.Monitor(env, "./vid", video_callable=lambda episode_id: True, force=True)
+
+
     total_test_rewards = []
     # Load the model
     saver.restore(sess, "./models/model.ckpt")
@@ -351,17 +355,10 @@ with tf.Session() as sess:
         state = env.reset()
         state, stacked_vectors = pre.stack_states(stacked_vectors, state, True,stack_size,state_size)
 
-        # state = pre.stateToVector(state)
-
         print("****************************************************")
         print("EPISODE ", episode)
 
         while True:
-            # Convert to Numpy array and reshape the state
-            # state = np.array(state)
-            # state = state.reshape((1, state_size))
-            # print(state.shape)
-
             stateArr = []
             stateArr.append(state)
 
@@ -371,14 +368,11 @@ with tf.Session() as sess:
 
             # Take the biggest Q value (= the best action)
             action = np.argmax(Qs[0])
-            # time.sleep(0.1)
-            print(Qs)
-            print(action)
-
+            # print(Qs)
+            # print(action)
 
             # Perform the action and get the next_state, reward, and done information
             next_state, reward, done, _ = env.step(action)
-            # next_state = pre.stateToVector(next_state)
 
             env.render()
 

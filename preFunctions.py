@@ -229,13 +229,11 @@ def testGame(saver,env,DQNetwork2,stack_size,state_size):
 
                 # Take the biggest Q value (= the best action)
                 action = np.argmax(Qs[0])
-                # time.sleep(0.1)
-                print(Qs)
-                print(action)
+                # print(Qs)
+                # print(action)
 
                 # Perform the action and get the next_state, reward, and done information
                 next_state, reward, done, _ = env.step(action)
-                # next_state = pre.stateToVector(next_state)
 
                 env.render()
 
