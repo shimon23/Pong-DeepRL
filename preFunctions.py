@@ -48,41 +48,6 @@ def stateToVector(state):
                 vector[3] = j
                 break
 
-    # global oldX
-    # global oldY
-    #
-    #
-    #
-    # # Set defulat values for some states:
-    # # If the state does not contain ball, define speed and m's to 0.
-    # if((vector[2]==0 and vector[3]==0) or (oldX==0 and oldY==0)):
-    #     vector[4] = 0
-    #     vector[5] = 0
-    #
-    #     oldX = vector[2]
-    #     oldY = vector[3]
-    #
-    #     vector[6] = 0
-    #
-    #
-    # else:
-    #     x1MinusX2 = vector[2] - oldX
-    #     y1MinusY2 = vector[3] - oldY
-    #
-    #     dist = np.sqrt(np.power(x1MinusX2, 2) + np.power(y1MinusY2, 2))
-    #     vector[6] = dist / 2
-    #
-    #     dirX = vector[2] - oldX
-    #     dirY = vector[3] - oldY
-    #
-    #     oldX = vector[2]
-    #     oldY = vector[3]
-    #
-    #     vector[4] = dirX
-    #     vector[5] = dirY
-    #
-
-
     return vector
 
 # Get time vector:
@@ -142,21 +107,20 @@ def predict_action(sess, DQNetwork2, explore_start, explore_stop, decay_rate, de
         Qs = sess.run(DQNetwork2.output, feed_dict={DQNetwork2.inputs_: state.reshape((1, *state.shape))})
         # Take the biggest Q value (= the best action)
         action = np.argmax(Qs)
-        print(action)
+        # print(action)
 
     return action, explore_probability
 
 
-# actions space consist 6 actions, but they are only 3 actions(stay,up,down) are possible.
-def actionAdapter(action):
-    if(action==1):
-        return 0
-    elif(action==2):
-        return 4
-    elif(action== 3):
-        return 5
-    else:
-        return action
+# Print the action(DOWN,UP,STAY):
+# Argument: action - 0/1/2/3/4/5
+def actionToString(action):
+    if(action==1 or action==0):
+        print("STAY")
+    elif(action==2 or action==4):
+        print("UP")
+    elif(action== 3 or action==5):
+        print("DOWN")
 
 
 
@@ -173,81 +137,23 @@ def stack_states(stacked_vectors, state, is_new_episode,stack_size,state_size):
 
     if is_new_episode:
         # Clear our stacked_frames
-        stacked_Vectors = deque([np.zeros((state_size), dtype=np.int) for i in range(stack_size)], maxlen=4)
+        stacked_vectors = deque([np.zeros((state_size), dtype=np.int) for i in range(stack_size)], maxlen=4)
 
         # Because we're in a new episode, copy the same state 4x
-        stacked_Vectors.append(stateVec)
-        stacked_Vectors.append(stateVec)
-        stacked_Vectors.append(stateVec)
-        stacked_Vectors.append(stateVec)
+        stacked_vectors.append(stateVec)
+        stacked_vectors.append(stateVec)
+        stacked_vectors.append(stateVec)
+        stacked_vectors.append(stateVec)
 
         # Stack the frames
-        stacked_state = np.stack(stacked_Vectors)
+        stacked_state = np.stack(stacked_vectors)
 
     else:
         # Append frame to deque, automatically removes the oldest frame
         stacked_vectors.append(stateVec)
-
-        # print("test1")
         # Build the stacked state (first dimension specifies different frames)
         stacked_state = np.stack(stacked_vectors)
-        # print("test2")
 
     return stacked_state, stacked_vectors
-
-
-def testGame(saver,env,DQNetwork2,stack_size,state_size):
-    # Testing mode:
-    with tf.Session() as sess:
-        total_test_rewards = []
-        # Load the model
-        saver.restore(sess, "./models/model.ckpt")
-
-        for episode in range(1):
-            total_rewards = 0
-
-            state = env.reset()
-            state, stacked_vectors = stack_states(stacked_vectors, state, True, stack_size, state_size)
-
-            # state = pre.stateToVector(state)
-
-            print("****************************************************")
-            print("EPISODE ", episode)
-
-            while True:
-                # Convert to Numpy array and reshape the state
-                # state = np.array(state)
-                # state = state.reshape((1, state_size))
-                # print(state.shape)
-
-                stateArr = []
-                stateArr.append(state)
-
-                # Get action from Q-network
-                # Estimate the Qs values state
-                Qs = sess.run(DQNetwork2.output, feed_dict={DQNetwork2.inputs_: stateArr})
-
-                # Take the biggest Q value (= the best action)
-                action = np.argmax(Qs[0])
-                # print(Qs)
-                # print(action)
-
-                # Perform the action and get the next_state, reward, and done information
-                next_state, reward, done, _ = env.step(action)
-
-                env.render()
-
-                total_rewards += reward
-
-                if done:
-                    print("Score", total_rewards)
-                    total_test_rewards.append(total_rewards)
-                    break
-
-                next_state, stacked_vectors = stack_states(stacked_vectors, next_state, False, stack_size,
-                                                               state_size)
-                state = next_state
-
-        # env.close()
 
 

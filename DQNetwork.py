@@ -20,12 +20,19 @@ class DQNetwork:
 
 
             self.flatten = tf.contrib.layers.flatten(self.inputs_)
-            self.l2 = layers.fully_connected(self.flatten, num_outputs=256, activation_fn=tf.nn.relu)
-            self.l3 = layers.fully_connected(self.l2, num_outputs=128, activation_fn=tf.nn.relu)
-            self.l4 = layers.fully_connected(self.l3, num_outputs=64, activation_fn=tf.nn.relu)
-            self.l5 = layers.fully_connected(self.l4, num_outputs=6, activation_fn=None)
 
-            self.output = tf.nn.softmax(self.l5)
+            # # First layer:
+            self.W1 = tf.Variable(tf.contrib.layers.xavier_initializer()((16, 256)))
+            self.b1 = tf.Variable(tf.constant(0.1, shape=[256]), name="b1")
+            self.z1 = tf.nn.relu(tf.matmul(self.flatten, self.W1) + self.b1, name="z1")
+
+            # # Second layer:
+            self.W2 = tf.Variable(tf.contrib.layers.xavier_initializer()((256, 6)))
+            # self.W2 = tf.Variable(tf.truncated_normal([1024,6], stddev=0.1), name="W2")
+            self.b2 = tf.Variable(tf.constant(0.1, shape=[6]), name="b2")
+            self.z2 = tf.matmul(self.z1, self.W2) + self.b2
+
+            self.output = self.z2
 
             # Q is our predicted Q value.
             # result = double
