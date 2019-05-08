@@ -11,10 +11,11 @@ from play import play
 import warnings # This ignore all the warning messages that are normally printed during the training because of skiimage
 warnings.filterwarnings('ignore')
 
-# from tensorflow.python.client import device_lib
+from tensorflow.python.client import device_lib
 
 # device_lib.list_local_devices()
-print(tf.test.is_gpu_available())
+# print(tf.test.is_gpu_available())
+device_lib.list_local_devices()
 
 
 # #

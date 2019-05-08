@@ -2,16 +2,52 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="269289f1-eacf-49bd-96ec-c57ca3473253" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/notebook.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DQNetwork.py" beforeDir="false" afterPath="$PROJECT_DIR$/DQNetwork.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/model.ckpt.data-00000-of-00001" beforeDir="false" afterPath="$PROJECT_DIR$/models/model.ckpt.data-00000-of-00001" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/model.ckpt.index" beforeDir="false" afterPath="$PROJECT_DIR$/models/model.ckpt.index" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/model.ckpt.meta" beforeDir="false" afterPath="$PROJECT_DIR$/models/model.ckpt.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pong.py" beforeDir="false" afterPath="$PROJECT_DIR$/pong.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/preFunctions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebook.py" beforeDir="false" afterPath="$PROJECT_DIR$/notebook.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/saveData/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/saveData/log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/saveData/memory.dq" beforeDir="false" afterPath="$PROJECT_DIR$/saveData/memory.dq" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000000.meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000000.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000001.meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000001.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000002.meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000002.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000003.meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000003.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000004.meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000004.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000005.meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000005.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000006.meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000006.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000007.meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000007.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000008.meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000008.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000009.meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000009.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000010.meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000010.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000011.meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000011.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000012.meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000012.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000013.meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000013.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000014.meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000014.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000015.meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000015.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000016.meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000016.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000017.meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000017.mp4" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,62 +57,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pong.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Untitled.ipynb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-11583" />
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/notebook.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="844">
-              <caret line="108" column="20" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/preFunctions.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="15" column="13" selection-end-line="159" />
-              <folding>
-                <element signature="e#0#61#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DQNetwork.py">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="297">
-              <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
+              <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
               <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Memory.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="34" />
-              <folding>
-                <element signature="e#0#61#0" expanded="true" />
+                <element signature="e#84#99#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -93,36 +80,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>nd</find>
-      <find>ndi</find>
-      <find>pri</find>
-      <find>ep:</find>
-      <find>650</find>
-      <find>640</find>
-      <find>630</find>
-      <find>637</find>
-      <find>565</find>
-      <find>635</find>
-      <find>-</find>
-      <find>epi</find>
-      <find>-20</find>
-      <find>te</find>
-      <find>ep</find>
-      <find>-18</find>
-      <find>env</find>
-      <find>test</find>
-      <find>tes</find>
-      <find>500</find>
-      <find>: 561</find>
-      <find>-19</find>
-      <find>-21</find>
-      <find>-20.</find>
-      <find>-17.</find>
-      <find>-15.</find>
-      <find>epis</find>
-      <find>score</find>
-      <find>score -</find>
       <find>-16.</find>
+      <find>possi</find>
+      <find>env</find>
+      <find>logFile</find>
+      <find>tex</find>
+      <find>text_</find>
+      <find>pretrain_length</find>
+      <find>done</find>
+      <find>predict_action</find>
+      <find>step</find>
+      <find>possible_actions</find>
+      <find>init</find>
+      <find>initM</find>
+      <find>loss</find>
+      <find>decay_step</find>
+      <find>max_steps</find>
+      <find>DQN</find>
+      <find>statet</find>
+      <find>get_t</find>
+      <find>time</find>
+      <find>action_</find>
+      <find>initMemory</find>
+      <find>target_Qs_batch</find>
+      <find>training</find>
+      <find>stack</find>
+      <find>stack_states</find>
+      <find>self.stacked_vectors</find>
+      <find>stacked_vectors</find>
+      <find>pre</find>
+      <find>pred</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -134,7 +121,6 @@
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/pongStates/pong.py" />
         <option value="$PROJECT_DIR$/play.py" />
-        <option value="$PROJECT_DIR$/tests.py" />
         <option value="$PROJECT_DIR$/karesTest.py" />
         <option value="$PROJECT_DIR$/ramTest.py" />
         <option value="$PROJECT_DIR$/ram2.py" />
@@ -144,6 +130,8 @@
         <option value="$PROJECT_DIR$/DQNetwork.py" />
         <option value="$PROJECT_DIR$/Memory.py" />
         <option value="$PROJECT_DIR$/pong.py" />
+        <option value="$PROJECT_DIR$/tests.py" />
+        <option value="$PROJECT_DIR$/tests2.py" />
         <option value="$PROJECT_DIR$/notebook.py" />
       </list>
     </option>
@@ -160,6 +148,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -175,13 +164,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -202,8 +190,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.pong">
-    <configuration name="DQNetwork" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.notebook">
+    <configuration name="notebook" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="finalProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -215,28 +203,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/DQNetwork.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="karesTest" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="finalProject" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/karesTest.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/notebook.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -266,27 +233,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="ram2" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="finalProject" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ram/ram2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="run_dqn_ram" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="finalProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -308,13 +254,55 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="tests" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="finalProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tests2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="finalProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.notebook" />
+        <item itemvalue="Python.tests2" />
+        <item itemvalue="Python.tests" />
         <item itemvalue="Python.pong" />
         <item itemvalue="Python.run_dqn_ram" />
-        <item itemvalue="Python.ram2" />
-        <item itemvalue="Python.DQNetwork" />
-        <item itemvalue="Python.karesTest" />
       </list>
     </recent_temporary>
   </component>
@@ -335,12 +323,12 @@
     <frame x="77" y="-2" width="1843" height="1082" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20274726" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16758242" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3297414" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.29805616" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32948583" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.41972718" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39978448" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -354,12 +342,12 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12087912" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13021979" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.35021552" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32948583" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2980063" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39978448" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -445,13 +433,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.local/lib/python3.6/site-packages/tensorflow/python/client/session.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2401">
-          <caret line="1127" selection-start-line="1127" selection-end-line="1127" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.local/lib/python3.6/site-packages/numpy/core/numeric.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
@@ -515,27 +496,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.local/lib/python3.6/site-packages/tensorflow/python/framework/ops.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
           <caret line="1658" selection-start-line="1658" selection-end-line="1658" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pong.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
@@ -574,10 +538,47 @@
         <state relative-caret-position="-11583" />
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.local/lib/python3.6/site-packages/tensorflow/python/client/session.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="1074" selection-start-line="1074" selection-end-line="1074" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pong.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="386" column="30" selection-start-line="340" selection-end-line="386" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="55" column="12" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/notebook.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="844">
-          <caret line="108" column="20" selection-start-line="108" selection-start-column="20" selection-end-line="108" selection-end-column="20" />
+        <state relative-caret-position="297">
+          <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
+          <folding>
+            <element signature="e#84#99#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
