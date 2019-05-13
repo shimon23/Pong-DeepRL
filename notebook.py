@@ -39,13 +39,13 @@ possible_actions = [[1, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0], 
 learning_rate = 0.00001  # Alpha(learning rate).
 gamma = 0.99  # Discounting rate.
 
-total_episodes = 5000  # Total episodes for training.
-saveEvery = 10000  # Save the model every few games.
+total_episodes = 10000  # Total episodes for training.
+saveEvery = 300  # Save the model every few games.
 
 # Exploration parameters for epsilon greedy strategy
 explore_start = 1.0  # exploration probability at start
 explore_stop = 0.1  # minimum exploration probability
-decay_rate = 0.0000001  # exponential decay rate for exploration prob
+decay_rate = 0.00000001  # exponential decay rate for exploration prob
 
 memory_size = 10000  # Number of experiences the Memory can keep
 
@@ -257,6 +257,7 @@ class CreateGame:
         # Initialize the decay rate (that will use to reduce epsilon):
         self.decay_step = tf.Variable(0)
         self.decay_stepVar = 0
+        self.min_decay_rate = False
 
         self.episode_render = False
 
@@ -264,6 +265,8 @@ class CreateGame:
         self.print_q_values = False
 
         self.test_next_game = False
+
+        self.min_decay_rate = False
 
         # Saver will help us to save our model
         self.saver = tf.train.Saver()
@@ -344,9 +347,15 @@ class CreateGame:
         # First we randomize a number
         exp_exp_tradeoff = np.random.rand()
 
-        # Here we'll use an improved version of our epsilon greedy strategy used in Q-learning notebook
-        explore_probability = explore_stop + (explore_start - explore_stop) * np.exp(
-            -decay_rate * self.sess.run(self.decay_step))
+        if not self.min_decay_rate:
+            # Here we'll use an improved version of our epsilon greedy strategy used in Q-learning notebook
+            explore_probability = explore_stop + (explore_start - explore_stop) * np.exp(
+                -decay_rate * self.sess.run(self.decay_step))
+
+            if explore_probability<explore_stop+0.01:
+                self.min_decay_rate = True
+        else:
+            explore_probability = explore_stop
 
         if explore_probability > exp_exp_tradeoff:
             # Make a random action (exploration)
@@ -354,9 +363,11 @@ class CreateGame:
         else:
             # Get action from Q-network (exploitation)
             # Estimate the Qs values state
-            state = np.array(state)
+            # state = np.array(state)
+            # print(state.shape)
             Qs = self.sess.run(self.DQN.output,
-                               feed_dict={self.DQN.inputs_: state.reshape((1, *state.shape))})
+                               feed_dict={self.DQN.inputs_: state.reshape((1,*state.shape))})
+
             # print(Qs)
             # Take the biggest Q value (= the best action)
             action = np.argmax(Qs)
@@ -591,12 +602,20 @@ class CreateGame:
             print("TEST EPISODE")
 
             while True:
-                state_arr = []
-                state_arr.append(state)
+                # state_arr = [state]
+                # state_arr.append(state)
 
                 # Get action from Q-network
                 # Estimate the Qs values state
-                Qs = self.sess.run(self.DQN.output, feed_dict={self.DQN.inputs_: state_arr})
+                # print("1: ",state_arr)
+                # print("2: ",state.reshape(*state.shape))
+                # print(state.shape)
+
+
+                # state = np.array(state)
+                Qs = self.sess.run(self.DQN.output,
+                                   feed_dict={self.DQN.inputs_: state.reshape(1,*state.shape)})
+                # Qs = self.sess.run(self.DQN.output, feed_dict={self.DQN.inputs_: state_arr})
 
                 # Take the biggest Q value (= the best action)
                 action = np.argmax(Qs[0])

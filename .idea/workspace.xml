@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="269289f1-eacf-49bd-96ec-c57ca3473253" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/model.ckpt.data-00000-of-00001" beforeDir="false" afterPath="$PROJECT_DIR$/models/model.ckpt.data-00000-of-00001" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/model.ckpt.index" beforeDir="false" afterPath="$PROJECT_DIR$/models/model.ckpt.index" afterDir="false" />
@@ -12,42 +10,10 @@
       <change beforePath="$PROJECT_DIR$/saveData/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/saveData/log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/saveData/memory.dq" beforeDir="false" afterPath="$PROJECT_DIR$/saveData/memory.dq" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000000.meta.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000000.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000001.meta.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000001.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000002.meta.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000002.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000003.meta.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000003.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000004.meta.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000004.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000005.meta.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000005.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000006.meta.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000006.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000007.meta.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000007.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000008.meta.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000008.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000009.meta.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000009.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000010.meta.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000010.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000011.meta.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000011.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000012.meta.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000012.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000013.meta.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000013.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000014.meta.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000014.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000015.meta.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000015.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000016.meta.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000016.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000017.meta.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.0.7670.video000017.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.episode_batch.1.26063.stats.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.manifest.1.26063.manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.1.26063.video000000.meta.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.1.26063.video000000.mp4" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -60,8 +26,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/notebook.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
+            <state relative-caret-position="182">
+              <caret line="345" column="49" selection-start-line="345" selection-start-column="49" selection-end-line="345" selection-end-column="49" />
               <folding>
                 <element signature="e#84#99#0" expanded="true" />
               </folding>
@@ -80,7 +46,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>-16.</find>
       <find>possi</find>
       <find>env</find>
       <find>logFile</find>
@@ -110,6 +75,7 @@
       <find>stacked_vectors</find>
       <find>pre</find>
       <find>pred</find>
+      <find>reshap</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -130,8 +96,8 @@
         <option value="$PROJECT_DIR$/DQNetwork.py" />
         <option value="$PROJECT_DIR$/Memory.py" />
         <option value="$PROJECT_DIR$/pong.py" />
-        <option value="$PROJECT_DIR$/tests.py" />
         <option value="$PROJECT_DIR$/tests2.py" />
+        <option value="$PROJECT_DIR$/tests.py" />
         <option value="$PROJECT_DIR$/notebook.py" />
       </list>
     </option>
@@ -148,7 +114,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -164,6 +129,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -299,8 +265,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.notebook" />
-        <item itemvalue="Python.tests2" />
         <item itemvalue="Python.tests" />
+        <item itemvalue="Python.tests2" />
         <item itemvalue="Python.pong" />
         <item itemvalue="Python.run_dqn_ram" />
       </list>
@@ -320,7 +286,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="77" y="-2" width="1843" height="1082" extended-state="6" />
+    <frame x="77" y="25" width="1843" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16758242" />
@@ -328,7 +294,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32948583" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.41972718" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.41900647" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39978448" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -554,8 +520,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="55" column="12" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
+        <state relative-caret-position="442">
+          <caret line="25" column="1" lean-forward="true" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
           <folding>
             <element signature="e#0#52#0" expanded="true" />
           </folding>
@@ -565,7 +531,7 @@
     <entry file="file://$PROJECT_DIR$/tests2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
-          <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
@@ -574,8 +540,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/notebook.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
+        <state relative-caret-position="182">
+          <caret line="345" column="49" selection-start-line="345" selection-start-column="49" selection-end-line="345" selection-end-column="49" />
           <folding>
             <element signature="e#84#99#0" expanded="true" />
           </folding>
