@@ -1,26 +1,22 @@
 ##################
 # Import Libraries
 ##################
-# Ignore warning messages.
-import warnings
 import threading
-
-warnings.filterwarnings('ignore')
-import os
-
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-
 import random
 import time
-
 import gym  # Game environment.
 import numpy as np  # Handle matrices.
 import pickle  # Save and restore data package.
 from collections import deque  # For stacking states.
-
 import tensorflow as tf  # Deep Learning library.
 # import tensorflow.contrib.layers as layers
 
+# Ignore warning messages.
+import warnings
+import os
+
+warnings.filterwarnings('ignore')
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 #######################
 # Model hyperparameters
@@ -53,6 +49,8 @@ rewards_list = []  # list of all training rewards.
 
 # MODIFY THIS TO FALSE IF IS NOT THE FIRST TRAINING EPISODE.
 firstTraining = True
+
+
 # firstTraining = False
 
 
@@ -99,7 +97,7 @@ class DQNetwork:
 ####################
 # Experiences memory
 ####################
-class Memory():
+class Memory:
 
     # Init deque for the memory:
     def __init__(self, max_size):
@@ -109,10 +107,10 @@ class Memory():
     def add(self, experience):
         self.buffer.append(experience)
 
-    # Take random batch_size experiences from memory:
-    def sample(self, batch_size):
+    # Take random "size" experiences from memory:
+    def sample(self, size):
         buffer_size = len(self.buffer)
-        index = np.random.choice(np.arange(buffer_size), size=batch_size, replace=False)
+        index = np.random.choice(np.arange(buffer_size), size=size, replace=False)
 
         # Obtain random mini-batch from memory
         batch = [self.buffer[i] for i in index]
@@ -352,7 +350,7 @@ class CreateGame:
             explore_probability = explore_stop + (explore_start - explore_stop) * np.exp(
                 -decay_rate * self.sess.run(self.decay_step))
 
-            if explore_probability<explore_stop+0.01:
+            if explore_probability < explore_stop + 0.01:
                 self.min_decay_rate = True
         else:
             explore_probability = explore_stop
@@ -365,17 +363,16 @@ class CreateGame:
             # Estimate the Qs values state
             # state = np.array(state)
             # print(state.shape)
-            Qs = self.sess.run(self.DQN.output,
-                               feed_dict={self.DQN.inputs_: state.reshape((1,*state.shape))})
+            qs = self.sess.run(self.DQN.output,
+                               feed_dict={self.DQN.inputs_: state.reshape((1, *state.shape))})
 
-            # print(Qs)
             # Take the biggest Q value (= the best action)
-            action = np.argmax(Qs)
+            action = np.argmax(qs)
 
             if self.print_actions:
                 action_to_string(action)
             if self.print_q_values:
-                print(Qs)
+                print(qs)
 
         return action, explore_probability
 
@@ -389,6 +386,7 @@ class CreateGame:
     def stack_states(self, state, is_new_episode):
         # Preprocess frame
         state_vec = state_to_vector(state)
+        state_vec = np.asarray(state_vec)
 
         if is_new_episode:
             # Clear our stacked_frames
@@ -413,7 +411,7 @@ class CreateGame:
         return stacked_state
 
     def save_model(self):
-        save_path = self.saver.save(self.sess, "./models/model.ckpt")
+        self.saver.save(self.sess, "./models/model.ckpt")
         print("Model Saved")
 
         # Save memory data:
@@ -422,7 +420,6 @@ class CreateGame:
 
     def print_timer(self):
         # Get and print total training time:
-        x = tf.Variable(1)
         time_vector = get_time(self.sess.run(self.secondsCounter))
         print("Ep: %d" % self.sess.run(self.episodeCounter), ",Total time: D:%d,H:%d,M:%d,S:%d" % (
             int(time_vector[0]), int(time_vector[1]), int(time_vector[2]), int(time_vector[3])))
@@ -448,8 +445,6 @@ class CreateGame:
                 print("\"a\" - enable/disable printing actions.")
                 print("\"t\" - test the model in the next episode.")
                 print("\"q\" - enable/disable printing q-values.")
-
-
 
             elif cmd == "r":
                 self.episode_render = not self.episode_render
@@ -479,8 +474,7 @@ class CreateGame:
                 start_time_ep = time.time()  # Start episode time.
                 # Print total training time:
                 self.print_timer()
-                # Set step to 0
-                step = 0
+
                 # Initialize the rewards of the episode
                 episode_rewards = []
 
@@ -535,10 +529,10 @@ class CreateGame:
                     # Obtain random mini-batch from memory
                     batch = self.memory.sample(batch_size)
                     states_mb, actions_mb, rewards_mb, next_states_mb, dones_mb = batch
-                    target_Qs_batch = []
+                    target_qs_batch = []
 
                     # Get Q values for next_state
-                    Qs_next_state = self.sess.run(self.DQN.output,
+                    qs_next_state = self.sess.run(self.DQN.output,
                                                   feed_dict={self.DQN.inputs_: next_states_mb})
 
                     # Set Q_target = r if the episode ends at s+1, otherwise set Q_target = r + gamma*maxQ(s', a')
@@ -547,15 +541,15 @@ class CreateGame:
 
                         # If we are in a terminal state, only equals reward
                         if terminal:
-                            target_Qs_batch.append(rewards_mb[i])
+                            target_qs_batch.append(rewards_mb[i])
 
                         else:
-                            target = rewards_mb[i] + gamma * np.max(Qs_next_state[i])
-                            target_Qs_batch.append(target)
+                            target = rewards_mb[i] + gamma * np.max(qs_next_state[i])
+                            target_qs_batch.append(target)
 
-                    targets_mb = np.array([each for each in target_Qs_batch])
+                    targets_mb = np.array([each for each in target_qs_batch])
 
-                    loss, _, Q = self.sess.run([self.DQN.loss, self.DQN.optimizer, self.DQN.Q],
+                    loss, _, q = self.sess.run([self.DQN.loss, self.DQN.optimizer, self.DQN.Q],
                                                feed_dict={self.DQN.inputs_: states_mb,
                                                           self.DQN.target_Q: targets_mb,
                                                           self.DQN.actions_: actions_mb})
@@ -611,14 +605,13 @@ class CreateGame:
                 # print("2: ",state.reshape(*state.shape))
                 # print(state.shape)
 
-
                 # state = np.array(state)
-                Qs = self.sess.run(self.DQN.output,
-                                   feed_dict={self.DQN.inputs_: state.reshape(1,*state.shape)})
+                qs = self.sess.run(self.DQN.output,
+                                   feed_dict={self.DQN.inputs_: state.reshape(1, *state.shape)})
                 # Qs = self.sess.run(self.DQN.output, feed_dict={self.DQN.inputs_: state_arr})
 
                 # Take the biggest Q value (= the best action)
-                action = np.argmax(Qs[0])
+                action = np.argmax(qs[0])
 
                 # if self.print_actions:
                 #     action_to_string(action)

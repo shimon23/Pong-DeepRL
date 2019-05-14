@@ -3,17 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="269289f1-eacf-49bd-96ec-c57ca3473253" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/model.ckpt.data-00000-of-00001" beforeDir="false" afterPath="$PROJECT_DIR$/models/model.ckpt.data-00000-of-00001" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/model.ckpt.index" beforeDir="false" afterPath="$PROJECT_DIR$/models/model.ckpt.index" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/model.ckpt.meta" beforeDir="false" afterPath="$PROJECT_DIR$/models/model.ckpt.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notebook.py" beforeDir="false" afterPath="$PROJECT_DIR$/notebook.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/saveData/log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/saveData/log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/saveData/memory.dq" beforeDir="false" afterPath="$PROJECT_DIR$/saveData/memory.dq" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.episode_batch.1.26063.stats.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.manifest.1.26063.manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.1.26063.video000000.meta.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vid/openaigym.video.1.26063.video000000.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pongStates/models/checkpoint" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pongStates/models/model.ckpt.data-00000-of-00001" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pongStates/models/model.ckpt.index" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pongStates/models/model.ckpt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pongStates/pong.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pongStates/tensorboard/dqn/1/events.out.tfevents.1554210457.netanelhugi-X556URK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pongStates/tensorboard/dqn/1/events.out.tfevents.1554219655.netanelhugi-X556URK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pongStates/tensorboard/dqn/1/events.out.tfevents.1554220375.netanelhugi-X556URK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pongStates/tensorboard/dqn/1/events.out.tfevents.1554223084.netanelhugi-X556URK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pongStates/tensorboard/dqn/1/events.out.tfevents.1554288304.netanelhugi-X556URK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pongStates/tensorboard/dqn/1/events.out.tfevents.1554304128.netanelhugi-X556URK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pongStates/tensorboard/dqn/1/events.out.tfevents.1554304149.netanelhugi-X556URK" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pongStates/tensorboard/dqn/1/events.out.tfevents.1554304742.netanelhugi-X556URK" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,10 +29,21 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/notebook.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="345" column="49" selection-start-line="345" selection-start-column="49" selection-end-line="345" selection-end-column="49" />
+            <state relative-caret-position="295">
+              <caret line="582" lean-forward="true" selection-start-line="582" selection-end-line="582" />
               <folding>
-                <element signature="e#84#99#0" expanded="true" />
+                <element signature="e#84#100#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.local/lib/python3.6/site-packages/gym/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -114,21 +128,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="finalProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="finalProject" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="finalProject" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="ProjectPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -335,16 +335,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pongStates/pong.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="258" column="14" selection-start-line="258" selection-start-column="14" selection-end-line="258" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/pongStates/pong.py" />
     <entry file="file://$USER_HOME$/.local/lib/python3.6/site-packages/tensorflow/python/training/saver.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -375,15 +366,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testfile.txt" />
     <entry file="file://$PROJECT_DIR$/memory.txt" />
-    <entry file="file://$USER_HOME$/.local/lib/python3.6/site-packages/gym/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/karesTest.py" />
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -538,12 +520,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/.local/lib/python3.6/site-packages/gym/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/notebook.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="345" column="49" selection-start-line="345" selection-start-column="49" selection-end-line="345" selection-end-column="49" />
+        <state relative-caret-position="295">
+          <caret line="582" lean-forward="true" selection-start-line="582" selection-end-line="582" />
           <folding>
-            <element signature="e#84#99#0" expanded="true" />
+            <element signature="e#84#100#0" expanded="true" />
           </folding>
         </state>
       </provider>
